@@ -1,0 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtol_16_fdf.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/08 01:08:29 by seonghwc          #+#    #+#             */
+/*   Updated: 2023/02/08 02:15:56 by seonghwc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fdf.h"
+
+int	ft_strtol_get_val(char c)
+{
+	int		i;
+	char	*num;
+	char	*upper_num;
+
+	i = 0;
+	num = "0123456789abcdef";
+	upper_num = "0123456789ABCDEF";
+	if ((c >= 'a' && c <= 'f') || (c >= '0' && c <= '9'))
+	{
+		while (c != num[i])
+			i++;
+		return (i);
+	}
+	else
+	{
+		while (c != upper_num[i])
+			i++;
+		return (i);
+	}
+}
+
+int	ft_strtol_16_fdf(char *str)
+{
+	int	i;
+	int	ret;
+
+	ret = 0;
+	i = 2;
+	while (str[i] != ' ' && str[i] != '\n' && str[i] != '\0')
+		ret = ret * 16 + ft_strtol_get_val(str[i++]);
+	return (ret);
+}
