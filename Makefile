@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/08 04:47:59 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/02/10 05:52:40 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME                    = fdf
 CC						= cc
 SRCS                    = main.c \
 						  ft_strtol_16_fdf.c \
-						  input.c
+						  input.c \
+						  map_error_check.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
 MLX						= -L ./ -lmlx -framework OpenGL -framework AppKit
