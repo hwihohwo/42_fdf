@@ -75,7 +75,7 @@ void	input_data(t_mapinfo *map_info)
 		{
 			map_info->alt_array[i][j] = ft_atoi(&map_info->total[k]);
 			map_info->color_array[i][j++] = ft_strtol_16_fdf(&map_info->total[k]);
-			while (map_info->total[k] != ' ' && map_info->total[k])
+			while (ft_isalnum(map_info->total[k]) || map_info->total[k] == ',')
 				k++;
 		}
 		i++;
