@@ -39,8 +39,14 @@ int	color_error_check(char *line)
 {
 	int	i;
 
-	i = 3;
-	if (line[i - 2] != '0' || line[i - 1] != 'x')
+	i = 0;
+	while (i < 3 && line[i])
+	{
+		if ((i == 1 && line[i] != '0') || (i == 2 && line[i] != 'x'))
+			return (0);
+		i++;
+	}
+	if (i != 3)
 		return (0);
 	while (line[i] && line[i] != '\n')
 	{
@@ -56,13 +62,3 @@ int	color_error_check(char *line)
 	return (1);
 }
 
-void	map_error_exit(char **line_sep, char *line, char *total)
-{
-	perror("invalid map");
-	free_string_array(line_sep);
-	if (line != NULL)
-		free(line);
-	if (total != NULL)
-		free(total);
-	exit(1);
-}

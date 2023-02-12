@@ -41,7 +41,13 @@ int	ft_strtol_16_fdf(char *str)
 	int	ret;
 
 	ret = 0;
-	i = 2;
+	i = 0;
+	while (ft_isdigit(str[i]))
+		i++;
+	if (str[i] != ',')
+		return (0xFFFFFF);
+	else
+		i += 3;
 	while (str[i] != ' ' && str[i] != '\n' && str[i] != '\0')
 		ret = ret * 16 + ft_strtol_get_val(str[i++]);
 	return (ret);

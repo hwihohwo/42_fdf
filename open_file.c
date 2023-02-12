@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-char	*input_file(char *argv)
+char	*open_file(char *argv)
 {
 	int		fd;
 	int		col_num;
@@ -57,7 +57,6 @@ void	check_line(char *line, int *col_num, char *total)
 	else
 		if (*col_num != i)
 			map_error_exit(line_sep, line, total);
-	i = 0;
 	free_string_array(line_sep);
 }
 
@@ -85,10 +84,4 @@ char	*join_line(char *total, char *line)
 		free(line);
 	}
 	return (total);
-}
-
-void	open_error(void)
-{
-	perror(0);
-	exit(1);
 }

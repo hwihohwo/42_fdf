@@ -14,7 +14,7 @@ NAME                    = fdf
 CC						= cc
 SRCS                    = main.c \
 						  ft_strtol_16_fdf.c \
-						  input.c \
+						  open_file.c \
 						  map_error_check.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
