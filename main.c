@@ -41,5 +41,6 @@ int	main(int argc, char *argv[])
 	init_map_info(&map_info);
 	map_info.total = open_file(argv[1]);
 	control_map_info(&map_info);
+	start_mlx(&map_info);
 	return (0);
 }

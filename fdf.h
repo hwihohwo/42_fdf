@@ -21,8 +21,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define WIN_WIDTH 2000
-# define WIN_HEIGHT 1180
+# define WIN_WIDTH 1900
+# define WIN_HEIGHT 1080
 
 typedef struct s_mapinfo
 {
@@ -32,6 +32,15 @@ typedef struct s_mapinfo
 	int		width;
 	int		height;
 }	t_mapinfo;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
 
 void	init_map_info(t_mapinfo *map_info);
 
