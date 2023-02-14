@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_map_info.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/12 19:49:37 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/13 23:34:43 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ void	input_data(t_mapinfo *map_info)
 	{
 		j = 0;
 		map_info->alt_array[i] = (int *)ft_calloc(map_info->width, sizeof(int));
-		if (map_info->alt_array[i] == NULL)
+		if (map_info->alt_array[i] == 0)
 			malloc_error_exit(map_info);
-		map_info->color_array[i] = (int *)ft_calloc(map_info->width, sizeof(int));
-		if (map_info->color_array[i] == NULL)
+		map_info->clr_ary[i] = (int *)ft_calloc(map_info->width, sizeof(int));
+		if (map_info->clr_ary[i] == 0)
 			malloc_error_exit(map_info);
 		while (map_info->total[k] != '\n' && map_info->total[k])
 		{
 			map_info->alt_array[i][j] = ft_atoi(&map_info->total[k]);
-			map_info->color_array[i][j++] = ft_strtol_16_fdf(&map_info->total[k]);
+			map_info->clr_ary[i][j++] = ft_strtol_16_fdf(&map_info->total[k]);
 			while (ft_isalnum(map_info->total[k]) || map_info->total[k] == ',')
 				k++;
 		}
@@ -87,10 +87,10 @@ void	control_map_info(t_mapinfo *map_info)
 	map_info->width = count_width(map_info->total);
 	map_info->height = count_height(map_info->total);
 	map_info->alt_array = (int **)ft_calloc(map_info->height, sizeof(int *));
-	if (map_info->alt_array == NULL)
+	if (map_info->alt_array == 0)
 		malloc_error_exit(map_info);
-	map_info->color_array = (int **)ft_calloc(map_info->height, sizeof(int *));
-	if (map_info->color_array == NULL)
+	map_info->clr_ary = (int **)ft_calloc(map_info->height, sizeof(int *));
+	if (map_info->clr_ary == 0)
 		malloc_error_exit(map_info);
 	input_data(map_info);
 }

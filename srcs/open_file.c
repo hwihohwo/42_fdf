@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 20:44:31 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/10 05:53:57 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:41:53 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ char	*open_file(char *argv)
 	char	*total;
 
 	col_num = 0;
-	total = NULL;
+	total = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		open_error();
+		open_error_exit();
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
+		if (line == 0)
 			break ;
 		check_line(line, &col_num, total);
-		if (total == NULL)
+		if (total == 0)
 			total = line;
 		else
 			total = join_line(total, line);
@@ -74,7 +74,7 @@ char	*join_line(char *total, char *line)
 {
 	char	*temp;
 
-	if (total == NULL)
+	if (total == 0)
 		total = line;
 	else
 	{

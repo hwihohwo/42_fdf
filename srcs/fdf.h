@@ -6,15 +6,15 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/10 02:21:21 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/14 01:35:37 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "./libft/libft.h"
-# include "./mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -28,9 +28,10 @@ typedef struct s_mapinfo
 {
 	char	*total;
 	int		**alt_array;
-	int		**color_array;
+	int		**clr_ary;
 	int		width;
 	int		height;
+	int		gap;
 }	t_mapinfo;
 
 typedef struct s_img
@@ -41,6 +42,13 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }	t_img;
+
+typedef struct s_spos
+{
+	int	s_x;
+	int	s_y;
+	int	color;
+}	t_spos;
 
 void	init_map_info(t_mapinfo *map_info);
 
@@ -58,5 +66,10 @@ int		color_error_check(char *line);
 void	open_error_exit(void);
 void	map_error_exit(char **line_sep, char *line, char *total);
 void	malloc_error_exit(t_mapinfo *map_info);
+
+int		count_width(char *total);
+int		count_height(char *total);
+void	input_data(t_mapinfo *map_info);
+void	control_map_info(t_mapinfo *map_info);
 
 #endif

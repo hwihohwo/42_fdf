@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_funcs.c                                      :+:      :+:    :+:   */
+/*   exit_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 00:05:04 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/13 00:05:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/13 23:35:07 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	open_error_exit(void)
 void	map_error_exit(char **line_sep, char *line, char *total)
 {
 	free_string_array(line_sep);
-	if (line != NULL)
+	if (line != 0)
 		free(line);
-	if (total != NULL)
+	if (total != 0)
 		free(total);
 	ft_printf("invalid map");
 	exit(1);
@@ -35,18 +35,18 @@ void	malloc_error_exit(t_mapinfo *map_info)
 
 	i = 0;
 	free(map_info->total);
-	if (map_info->alt_array != NULL)
+	if (map_info->alt_array != 0)
 	{
 		while (map_info->alt_array[i])
-			free(map_info->altarray[i++]);
+			free(map_info->alt_array[i++]);
 		free(map_info->alt_array);
 	}
 	i = 0;
-	if (map_info->color_array != NULL)
+	if (map_info->clr_ary != 0)
 	{
-		while (map_info->color_array[i])
-			free(map_info->color_array[i++]);
-		free(map_info->color_array);
+		while (map_info->clr_ary[i])
+			free(map_info->clr_ary[i++]);
+		free(map_info->clr_ary);
 	}
 	perror(0);
 	exit(1);

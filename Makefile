@@ -6,16 +6,19 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/10 05:52:40 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/02/13 23:45:54 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME                    = fdf
 CC						= cc
-SRCS                    = main.c \
-						  ft_strtol_16_fdf.c \
-						  open_file.c \
-						  map_error_check.c
+SRCS                    = ./srcs/main.c \
+						  ./srcs/ft_strtol_16_fdf.c \
+						  ./srcs/open_file.c \
+						  ./srcs/map_error_check.c \
+						  ./srcs/control_map_info.c \
+						  ./srcs/exit_funcs.c \
+						  ./srcs/mlx_hub.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
 MLX						= -L ./ -lmlx -framework OpenGL -framework AppKit
@@ -26,7 +29,7 @@ all :   $(NAME)
 $(NAME)     :   $(OBJS)
 	$(MAKE) -C libft/
 	$(MAKE) -C mlx/
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -lm $(MLX) $(LIBFT) -I .
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -lm $(MLX) $(LIBFT) -I ./srcs/
 
 clean   :
 	rm -f $(OBJS)

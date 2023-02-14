@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 00:13:38 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/10 06:02:41 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:35:32 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ int	color_error_check(char *line)
 	}
 	return (1);
 }
-
