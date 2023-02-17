@@ -6,13 +6,13 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 05:41:13 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/14 08:50:08 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/17 08:34:46 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	linear_check(t_spos *cur, t_spos *cur_n)
+int	inclination_check(t_spos *cur, t_spos *cur_n)
 {
 	int	linear;
 
@@ -53,15 +53,15 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
 	int	mov_y;
 	int	f;
 
-	if (!linear_check(w, h))
-		return (bresenhub_reverse(cur, cur_n, img));
+	if (!inclination_check(cur, cur_n))
+		return (bresenhum_reverse(cur, cur_n, img));
 	w = abs_fdf(cur_n->s_x - cur->s_x);
 	h = abs_fdf(cur_n->s_y - cur->s_y);
 	mov_direction(&mov_x, &mov_y, cur, cur_n);
 	f = 2 * h - w;
 	while (cur->s_x != cur_n->s_x)
 	{
-		my_image_put_pixel(cur->s_x, cur->s_y, img, );
+		my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
 		if (f < 0)
 			f += 2 * h;
 		else
@@ -73,7 +73,7 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
 	}
 }
 
-void	bresenhub_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
+void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
 {
 	int	w;
 	int	h;
@@ -87,7 +87,7 @@ void	bresenhub_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
 	f = 2 * w - h;
 	while (cur->s_y != cur_n->s_y)
 	{
-		my_image_put_pixel();
+		my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
 		if (f < 0)
 			f += 2 * w;
 		else

@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 00:05:04 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/13 23:35:07 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/17 00:55:43 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	map_error_exit(char **line_sep, char *line, char *total)
 	exit(1);
 }
 
-void	malloc_error_exit(t_mapinfo *map_info)
+void	mapinfo_free_exit(t_mapinfo *map_info)
 {
 	int	i;
 
@@ -48,6 +48,10 @@ void	malloc_error_exit(t_mapinfo *map_info)
 			free(map_info->clr_ary[i++]);
 		free(map_info->clr_ary);
 	}
+	if (map_info->total != 0)
+		free(map_info->total);
+	if (map_info->p_ary != 0)
+		free(map_info->p_ary);
 	perror(0);
 	exit(1);
 }

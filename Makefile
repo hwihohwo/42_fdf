@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/13 23:45:54 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/02/17 10:02:34 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ SRCS                    = ./srcs/main.c \
 						  ./srcs/map_error_check.c \
 						  ./srcs/control_map_info.c \
 						  ./srcs/exit_funcs.c \
-						  ./srcs/mlx_hub.c
+						  ./srcs/mlx_hub.c \
+						  ./srcs/draw_line.c \
+						  ./srcs/bresenhum.c \
+						  ./srcs/isometric_projection.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
 MLX						= -L ./ -lmlx -framework OpenGL -framework AppKit

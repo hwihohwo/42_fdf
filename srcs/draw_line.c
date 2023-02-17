@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:23:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/14 07:57:49 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/17 08:10:22 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,63 +20,66 @@ void	my_image_put_pixel(int x, int y, t_img *img, int color)
 	*(int *)dest = color;
 }
 
-void	calc_gap(t_mapinfo *map_info)
+void	case_inclination_0_1(t_spos *cur, t_spos *cur_n, t_img *img)
 {
-	map_info->gap = 1;
-	while ((map_info->gap * (map_info->width - 1) < WIN_WIDTH - 100) && \
-	(map_info->gap * (map_info->height - 1) < WIN_HEIGHT - 100))
-		map_info->gap++;
+	int	mov;
+
+	if (cur->s_x == cur_n->s_x)
+	{
+		if (cur->s_y < cur_n->s_y)
+			mov = 1;
+		else
+			mov = -1;
+		while (cur->s_y != cur_n->s_y)
+		{
+			my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
+			cur->s_y += mov;
+		}
+	}
+	else if (cur->s_y == cur_n->s_y)
+		case_inclination_2(cur, cur_n, img);
 }
 
-void	draw_line(t_mapinfo *map_info, void *mlx_ptr, void *win_ptr, t_img *img)
+void	case_inclination_2(t_spos *cur, t_spos *cur_n, t_img *img)
+{
+	int	mov;
+
+	if (cur->s_x < cur_n->s_x)
+		mov = 1;
+	else
+		mov = -1;
+	while (cur->s_x != cur_n->s_x)
+	{
+		my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
+		cur->s_x += mov;
+	}
+}
+
+void	draw_line(t_mapinfo *map, void *mlx_ptr, void *win_ptr, t_img *img)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	calc_gap(map_info);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
-	&img->line_length, &img->endian);
-	while (i < map_info->height - 1)
+	init_projection(map);
+	while (i < map->height * map->width)
 	{
-		j = 0;
-		while (j < map_info->width - 1)
+		if (map->p_ary[i].next_r != 0)
 		{
-			draw_line_2(i, j, map_info, img);
-			j++;
+			if (map->p_ary[i].s_x == map->p_ary[i].next_r->s_x || \
+			map->p_ary[i].s_y == map->p_ary[i].next_r->s_y)
+				case_inclination_0_1(&map->p_ary[i], map->p_ary[i].next_r, img);
+			else
+				bresenhum(&map->p_ary[i], map->p_ary[i].next_r, img);
+		}
+		if (map->p_ary[i].next_d != 0)
+		{
+			if (map->p_ary[i].s_x == map->p_ary[i].next_d->s_x || \
+			map->p_ary[i].s_y == map->p_ary[i].next_d->s_y)
+				case_inclination_0_1(&map->p_ary[i], map->p_ary[i].next_d, img);
+			else
+				bresenhum(&map->p_ary[i], map->p_ary[i].next_d, img);
 		}
 		i++;
 	}
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img->img, 100, 100);
-}
-
-void	draw_line_2(int i, int j, t_mapinfo *map_info, t_img *img)
-{
-	t_spos	cur;
-	t_spos	cur_r;
-	t_spos	cur_d;
-
-	init_cur_and_projection(&cur, i, j, map_info);
-	if (j < map_info->width - 1)
-		init_cur_and_projection(&cur_r, i, j + 1, map_info);
-	if (i < map_info->height - 1)
-		init_cur_and_projection(&cur_d, i + 1, j, map_info);
-	if (j < map_info->width - 1)
-		bresenhum(&cur, &cur_r, img);
-	if (i < map_info->height - 1)
-		bresenhum(&cur, &cur_d, img);
-}
-
-void	init_cur_and_projection(t_spos *cur, int i, int j, t_mapinfo *map_info)
-{
-	int	temp_x;
-	int	temp_y;
-	int	temp_z;
-
-	temp_x = i * map_info->gap;
-	temp_y = j * map_info->gap;
-	temp_z = map_info->alt_array[i][j] * map_info->gap;
-	cur->s_x = (int)((temp_x - temp_y) * cos(30));
-	cur->s_y = (int)((temp_x + temp_y) * sin(30) + temp_z);
-	cur->color = map_info->clr_ary[i][j];
 }

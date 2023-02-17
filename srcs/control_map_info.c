@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/13 23:34:43 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:01:19 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_width(char *total)
 
 	i = 0;
 	ret = 0;
-	while (total[i])
+	while (total[i] != '\n' && total[i] != '\0')
 	{
 		if (ft_isdigit(total[i]))
 		{
@@ -60,25 +60,26 @@ void	input_data(t_mapinfo *map_info)
 	int	j;
 	int	k;
 
-	i = 0;
+	i = -1;
 	k = 0;
-	while (i < map_info->height)
+	while (++i < map_info->height)
 	{
 		j = 0;
 		map_info->alt_array[i] = (int *)ft_calloc(map_info->width, sizeof(int));
 		if (map_info->alt_array[i] == 0)
-			malloc_error_exit(map_info);
+			mapinfo_free_exit(map_info);
 		map_info->clr_ary[i] = (int *)ft_calloc(map_info->width, sizeof(int));
 		if (map_info->clr_ary[i] == 0)
-			malloc_error_exit(map_info);
+			mapinfo_free_exit(map_info);
 		while (map_info->total[k] != '\n' && map_info->total[k])
 		{
 			map_info->alt_array[i][j] = ft_atoi(&map_info->total[k]);
 			map_info->clr_ary[i][j++] = ft_strtol_16_fdf(&map_info->total[k]);
 			while (ft_isalnum(map_info->total[k]) || map_info->total[k] == ',')
 				k++;
+			while (map_info->total[k] == ' ')
+				k++;
 		}
-		i++;
 	}
 }
 
@@ -88,9 +89,9 @@ void	control_map_info(t_mapinfo *map_info)
 	map_info->height = count_height(map_info->total);
 	map_info->alt_array = (int **)ft_calloc(map_info->height, sizeof(int *));
 	if (map_info->alt_array == 0)
-		malloc_error_exit(map_info);
+		mapinfo_free_exit(map_info);
 	map_info->clr_ary = (int **)ft_calloc(map_info->height, sizeof(int *));
 	if (map_info->clr_ary == 0)
-		malloc_error_exit(map_info);
+		mapinfo_free_exit(map_info);
 	input_data(map_info);
 }

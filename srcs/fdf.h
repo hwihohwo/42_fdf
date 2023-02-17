@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/14 01:35:37 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/17 08:32:27 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,21 @@
 # define WIN_WIDTH 1900
 # define WIN_HEIGHT 1080
 
+typedef struct s_spos
+{
+	int				s_x;
+	int				s_y;
+	int				color;
+	struct s_spos	*next_r;
+	struct s_spos	*next_d;
+}	t_spos;
+
 typedef struct s_mapinfo
 {
 	char	*total;
 	int		**alt_array;
 	int		**clr_ary;
+	t_spos	*p_ary;
 	int		width;
 	int		height;
 	int		gap;
@@ -42,13 +52,6 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }	t_img;
-
-typedef struct s_spos
-{
-	int	s_x;
-	int	s_y;
-	int	color;
-}	t_spos;
 
 void	init_map_info(t_mapinfo *map_info);
 
@@ -65,11 +68,29 @@ int		color_error_check(char *line);
 
 void	open_error_exit(void);
 void	map_error_exit(char **line_sep, char *line, char *total);
-void	malloc_error_exit(t_mapinfo *map_info);
+void	mapinfo_free_exit(t_mapinfo *map_info);
 
 int		count_width(char *total);
 int		count_height(char *total);
 void	input_data(t_mapinfo *map_info);
 void	control_map_info(t_mapinfo *map_info);
+
+void	start_mlx(t_mapinfo *map_info);
+
+void	my_image_put_pixel(int x, int y, t_img *img, int color);
+void	draw_line(t_mapinfo *map, void *mlx_ptr, void *win_ptr, t_img *img);
+void	case_inclination_0_1(t_spos *cur, t_spos *cur_n, t_img *img);
+void	case_inclination_2(t_spos *cur, t_spos *cur_n, t_img *img);
+
+int		inclination_check(t_spos *cur, t_spos *cur_n);
+void	mov_direction(int *mov_x, int *mov_y, t_spos *cur, t_spos *cur_n);
+void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img);
+void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img);
+
+void	calc_gap(t_mapinfo *map);
+void	mov_pos(t_mapinfo *map, int x_min, int y_min);
+void	adjust_pos(t_mapinfo *map);
+void	projection(t_spos *pos, int i, int j, t_mapinfo *map);
+void	init_projection(t_mapinfo *map);
 
 #endif

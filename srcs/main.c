@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:08:34 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/14 00:24:16 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/17 02:53:24 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_map_info(t_mapinfo *map_info)
 	map_info->total = 0;
 	map_info->alt_array = 0;
 	map_info->clr_ary = 0;
+	map_info->p_ary = 0;
 	map_info->width = 0;
 	map_info->height = 0;
 	map_info->gap = 0;
@@ -42,5 +43,6 @@ int	main(int argc, char *argv[])
 	map_info.total = open_file(argv[1]);
 	control_map_info(&map_info);
 	start_mlx(&map_info);
+	// free추가해야함.
 	return (0);
 }
