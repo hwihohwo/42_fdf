@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/17 08:32:27 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:16:52 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 
 typedef struct s_spos
 {
-	int				s_x;
-	int				s_y;
-	int				color;
-	struct s_spos	*next_r;
-	struct s_spos	*next_d;
+	double				s_x;
+	double				s_y;
+	int					color;
+	struct s_spos		*next_r;
+	struct s_spos		*next_d;
 }	t_spos;
 
 typedef struct s_mapinfo
@@ -88,7 +88,7 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img);
 void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img);
 
 void	calc_gap(t_mapinfo *map);
-void	mov_pos(t_mapinfo *map, int x_min, int y_min);
+void	mov_pos(t_mapinfo *map, double x_min, double y_min);
 void	adjust_pos(t_mapinfo *map);
 void	projection(t_spos *pos, int i, int j, t_mapinfo *map);
 void	init_projection(t_mapinfo *map);

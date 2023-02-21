@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 05:41:13 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/17 08:34:46 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/21 10:53:56 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	inclination_check(t_spos *cur, t_spos *cur_n)
 {
-	int	linear;
+	double	linear;
 
-	linear = (cur_n->s_y - cur->s_y) / (cur_n->s_x - cur->s_x);
+	linear = (double)(cur_n->s_y - cur->s_y) / (double)(cur_n->s_x - cur->s_x);
 	if (linear < 0)
 		linear *= -1;
 	if (linear < 1)
-		return (0);
-	else
 		return (1);
+	else
+		return (0);
 }
 
 void	mov_direction(int *mov_x, int *mov_y, t_spos *cur, t_spos *cur_n)
@@ -61,7 +61,7 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
 	f = 2 * h - w;
 	while (cur->s_x != cur_n->s_x)
 	{
-		my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
+		my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, 0xFFFFFF);
 		if (f < 0)
 			f += 2 * h;
 		else
@@ -87,7 +87,7 @@ void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
 	f = 2 * w - h;
 	while (cur->s_y != cur_n->s_y)
 	{
-		my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
+		my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, 0xFFFFFF);
 		if (f < 0)
 			f += 2 * w;
 		else

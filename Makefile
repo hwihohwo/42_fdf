@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/17 10:02:34 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/02/21 11:14:11 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all :   $(NAME)
 $(NAME)     :   $(OBJS)
 	$(MAKE) -C libft/
 	$(MAKE) -C mlx/
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -lm $(MLX) $(LIBFT) -I ./srcs/
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -lm $(MLX) $(LIBFT) -I ./srcs/ -g -fsanitize=address
 
 clean   :
 	rm -f $(OBJS)

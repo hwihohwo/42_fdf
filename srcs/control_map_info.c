@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/17 10:01:19 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:42:24 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ int	count_height(char *total)
 	return (ret);
 }
 
+void	calloc_for_alt_clr_ary(t_mapinfo *map_info, int i)
+{
+	map_info->alt_array[i] = (int *)ft_calloc(map_info->width, sizeof(int));
+	if (map_info->alt_array[i] == 0)
+		mapinfo_free_exit(map_info);
+	map_info->clr_ary[i] = (int *)ft_calloc(map_info->width, sizeof(int));
+	if (map_info->clr_ary[i] == 0)
+		mapinfo_free_exit(map_info);
+}
+
 void	input_data(t_mapinfo *map_info)
 {
 	int	i;
@@ -65,12 +75,7 @@ void	input_data(t_mapinfo *map_info)
 	while (++i < map_info->height)
 	{
 		j = 0;
-		map_info->alt_array[i] = (int *)ft_calloc(map_info->width, sizeof(int));
-		if (map_info->alt_array[i] == 0)
-			mapinfo_free_exit(map_info);
-		map_info->clr_ary[i] = (int *)ft_calloc(map_info->width, sizeof(int));
-		if (map_info->clr_ary[i] == 0)
-			mapinfo_free_exit(map_info);
+		calloc_for_alt_clr_ary(map_info, i);
 		while (map_info->total[k] != '\n' && map_info->total[k])
 		{
 			map_info->alt_array[i][j] = ft_atoi(&map_info->total[k]);
@@ -80,6 +85,7 @@ void	input_data(t_mapinfo *map_info)
 			while (map_info->total[k] == ' ')
 				k++;
 		}
+		k++;
 	}
 }
 

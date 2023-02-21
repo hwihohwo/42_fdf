@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 00:28:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/17 10:00:40 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:56:33 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,27 @@
 
 void	calc_gap(t_mapinfo *map)
 {
-	int	i;
-	int	x_max;
-	int	y_max;
+	int		i;
+	double	x_max;
+	double	y_max;
 
 	i = 0;
 	x_max = map->p_ary[i].s_x;
 	y_max = map->p_ary[i].s_y;
 	while (i < map->width * map->height)
 	{
-		if (map->p_ary[i].s_x > x_max)
+		if (x_max < map->p_ary[i].s_x)
 			x_max = map->p_ary[i].s_x;
-		if (map->p_ary[i].s_y > y_max)
+		if (y_max < map->p_ary[i].s_y)
 			y_max = map->p_ary[i].s_y;
 		i++;
 	}
-	while (x_max * map->gap < WIN_WIDTH - 100 \
-	&& y_max * map->gap < WIN_HEIGHT - 100)
+	while (x_max * (double)map->gap < WIN_WIDTH - 100 && \
+	y_max * (double)map->gap < WIN_HEIGHT - 100)
 		map->gap++;
-	i = 0;
-	while (i < map->width * map->height)
-	{
-		map->p_ary[i].s_x *= map->gap;
-		map->p_ary[i].s_y *= map->gap;
-		i++;
-	}
 }
 
-void	mov_pos(t_mapinfo *map, int x_min, int y_min)
+void	mov_pos(t_mapinfo *map, double x_min, double y_min)
 {
 	int	i;
 
@@ -54,13 +47,21 @@ void	mov_pos(t_mapinfo *map, int x_min, int y_min)
 			map->p_ary[i].s_y -= y_min;
 		i++;
 	}
+	calc_gap(map);
+	i = 0;
+	while (i < map->width * map->height)
+	{
+		map->p_ary[i].s_x *= map->gap;
+		map->p_ary[i].s_y *= map->gap;
+		i++;
+	}
 }
 
 void	adjust_pos(t_mapinfo *map)
 {
-	int	i;
-	int	x_min;
-	int	y_min;
+	int		i;
+	double	x_min;
+	double	y_min;
 
 	i = 0;
 	x_min = map->p_ary[i].s_x;
@@ -78,8 +79,8 @@ void	adjust_pos(t_mapinfo *map)
 
 void	projection(t_spos *pos, int i, int j, t_mapinfo *map)
 {
-	pos->s_x = (int)((j - i) * cos(30));
-	pos->s_y = (int)((i + j) * sin(30) - map->alt_array[i][j]);
+	pos->s_x = (j - i) * cos(0.5236);
+	pos->s_y = (j + i) * sin(0.5236) - map->alt_array[i][j];
 	pos->color = map->clr_ary[i][j];
 	if (i < map->height - 1)
 		pos->next_d = &(map->p_ary[j + map->width * (i + 1)]);
@@ -113,5 +114,4 @@ void	init_projection(t_mapinfo *map)
 		i++;
 	}
 	adjust_pos(map);
-	calc_gap(map);
 }

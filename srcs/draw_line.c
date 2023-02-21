@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:23:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/17 08:10:22 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:05:03 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	case_inclination_0_1(t_spos *cur, t_spos *cur_n, t_img *img)
 {
 	int	mov;
 
+	if (cur->s_x == cur_n->s_x && cur->s_y == cur_n->s_y)
+		return ;
 	if (cur->s_x == cur_n->s_x)
 	{
 		if (cur->s_y < cur_n->s_y)
@@ -32,7 +34,7 @@ void	case_inclination_0_1(t_spos *cur, t_spos *cur_n, t_img *img)
 			mov = -1;
 		while (cur->s_y != cur_n->s_y)
 		{
-			my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
+			my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, 0xFFFFFF);
 			cur->s_y += mov;
 		}
 	}
@@ -50,7 +52,7 @@ void	case_inclination_2(t_spos *cur, t_spos *cur_n, t_img *img)
 		mov = -1;
 	while (cur->s_x != cur_n->s_x)
 	{
-		my_image_put_pixel(cur->s_x, cur->s_y, img, 0xFFFFFF);
+		my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, 0xFFFFFF);
 		cur->s_x += mov;
 	}
 }
@@ -81,5 +83,5 @@ void	draw_line(t_mapinfo *map, void *mlx_ptr, void *win_ptr, t_img *img)
 		}
 		i++;
 	}
-	mlx_put_image_to_window(mlx_ptr, win_ptr, img->img, 100, 100);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img->img, 50, 50);
 }
