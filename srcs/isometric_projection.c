@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 00:28:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/21 11:56:33 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:17:58 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	calc_gap(t_mapinfo *map)
 			y_max = map->p_ary[i].s_y;
 		i++;
 	}
-	while (x_max * (double)map->gap < WIN_WIDTH - 100 && \
-	y_max * (double)map->gap < WIN_HEIGHT - 100)
-		map->gap++;
+	while (x_max * map->gap < WIN_WIDTH - 100 && \
+	y_max * map->gap < WIN_HEIGHT - 100)
+		map->gap += 0.1;
 }
 
 void	mov_pos(t_mapinfo *map, double x_min, double y_min)
@@ -79,8 +79,17 @@ void	adjust_pos(t_mapinfo *map)
 
 void	projection(t_spos *pos, int i, int j, t_mapinfo *map)
 {
-	pos->s_x = (j - i) * cos(0.5236);
-	pos->s_y = (j + i) * sin(0.5236) - map->alt_array[i][j];
+	double	x;
+	double	y;
+	double	z;
+
+	x = (double)j;
+	y = (double)i;
+	z = (double)map->alt_array[i][j];
+	x_rotate(&x, &y, &z, 45.0);
+	y_rotate(&x, &y, &z, 35.264);
+	pos->s_x = x;
+	pos->s_y = y;
 	pos->color = map->clr_ary[i][j];
 	if (i < map->height - 1)
 		pos->next_d = &(map->p_ary[j + map->width * (i + 1)]);

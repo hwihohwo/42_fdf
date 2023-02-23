@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/21 11:16:52 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:17:40 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define WIN_WIDTH 1900
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
+
+# define PI 3.14
 
 typedef struct s_spos
 {
@@ -35,13 +37,13 @@ typedef struct s_spos
 
 typedef struct s_mapinfo
 {
-	char	*total;
-	int		**alt_array;
-	int		**clr_ary;
-	t_spos	*p_ary;
-	int		width;
-	int		height;
-	int		gap;
+	char		*total;
+	int			**alt_array;
+	int			**clr_ary;
+	t_spos		*p_ary;
+	int			width;
+	int			height;
+	double		gap;
 }	t_mapinfo;
 
 typedef struct s_img
@@ -92,5 +94,9 @@ void	mov_pos(t_mapinfo *map, double x_min, double y_min);
 void	adjust_pos(t_mapinfo *map);
 void	projection(t_spos *pos, int i, int j, t_mapinfo *map);
 void	init_projection(t_mapinfo *map);
+
+void	z_rotate(double *x, double *y, double *z, double angle);
+void	x_rotate(double *x, double *y, double *z, double angle);
+void	y_rotate(double *x, double *y, double *z, double angle);
 
 #endif

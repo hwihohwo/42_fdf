@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/18 12:42:24 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:43:32 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ void	input_data(t_mapinfo *map_info)
 		{
 			map_info->alt_array[i][j] = ft_atoi(&map_info->total[k]);
 			map_info->clr_ary[i][j++] = ft_strtol_16_fdf(&map_info->total[k]);
-			while (ft_isalnum(map_info->total[k]) || map_info->total[k] == ',')
+			while (map_info->total[k] == ' ')
+				k++;
+			while (ft_isalnum(map_info->total[k]) || map_info->total[k] == ',' \
+			|| map_info->total[k] == '-' || map_info->total[k] == '+')
 				k++;
 			while (map_info->total[k] == ' ')
 				k++;

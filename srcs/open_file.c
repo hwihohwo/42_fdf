@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 20:44:31 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/13 23:41:53 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:16:56 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	check_line(char *line, int *col_num, char *total)
 			map_error_exit(line_sep, line, total);
 		i++;
 	}
+	if (line_sep[i - 1][0] == '\n')
+		i--;
 	if (*col_num == 0)
 		*col_num = i;
 	else

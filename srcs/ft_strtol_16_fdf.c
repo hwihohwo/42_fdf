@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 01:08:29 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/08 02:15:56 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/23 08:43:40 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_strtol_16_fdf(char *str)
 
 	ret = 0;
 	i = 0;
+	while (str[i] == ' ')
+		i++;
 	while (ft_isdigit(str[i]))
 		i++;
 	if (str[i] != ',')

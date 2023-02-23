@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 05:41:13 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/21 10:53:56 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/23 11:54:05 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
 
 	if (!inclination_check(cur, cur_n))
 		return (bresenhum_reverse(cur, cur_n, img));
-	w = abs_fdf(cur_n->s_x - cur->s_x);
-	h = abs_fdf(cur_n->s_y - cur->s_y);
+	w = abs_fdf((int)cur_n->s_x - (int)cur->s_x);
+	h = abs_fdf((int)cur_n->s_y - (int)cur->s_y);
 	mov_direction(&mov_x, &mov_y, cur, cur_n);
 	f = 2 * h - w;
-	while (cur->s_x != cur_n->s_x)
+	while ((int)cur->s_x != (int)cur_n->s_x)
 	{
 		my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, 0xFFFFFF);
 		if (f < 0)
@@ -81,11 +81,11 @@ void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
 	int	mov_y;
 	int	f;
 
-	w = abs_fdf(cur_n->s_x - cur->s_x);
-	h = abs_fdf(cur_n->s_y - cur->s_y);
+	w = abs_fdf((int)cur_n->s_x - (int)cur->s_x);
+	h = abs_fdf((int)cur_n->s_y - (int)cur->s_y);
 	mov_direction(&mov_x, &mov_y, cur, cur_n);
 	f = 2 * w - h;
-	while (cur->s_y != cur_n->s_y)
+	while ((int)cur->s_y != (int)cur_n->s_y)
 	{
 		my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, 0xFFFFFF);
 		if (f < 0)
