@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:08:34 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/23 17:32:57 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:42:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	init_map_info(t_mapinfo *map_info)
 	map_info->width = 0;
 	map_info->height = 0;
 	map_info->gap = 0;
+	map_info->mlx_ptr = 0;
+	map_info->mlx_win = 0;
+	map_info->img.img = 0;
 }
 
 int	main(int argc, char *argv[])

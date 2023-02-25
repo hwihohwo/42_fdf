@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   isometric_projection.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 00:28:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/23 17:17:58 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/25 09:09:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	projection(t_spos *pos, int i, int j, t_mapinfo *map)
 	y_rotate(&x, &y, &z, 35.264);
 	pos->s_x = x;
 	pos->s_y = y;
+	pos->s_z = z;
 	pos->color = map->clr_ary[i][j];
 	if (i < map->height - 1)
 		pos->next_d = &(map->p_ary[j + map->width * (i + 1)]);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/23 18:18:40 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/02/25 11:30:03 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS                    = ./srcs/main.c \
 						  ./srcs/draw_line.c \
 						  ./srcs/bresenhum.c \
 						  ./srcs/isometric_projection.c \
-						  ./srcs/rotate.c
+						  ./srcs/rotate.c \
+						  ./srcs/key_hook.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
 MLX						= -L ./ -lmlx -framework OpenGL -framework AppKit
