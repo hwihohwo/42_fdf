@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 04:53:38 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 11:47:11 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/25 20:59:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	start_mlx(t_mapinfo *map)
 	init_projection(map);
 	//draw_line(map);
 	mlx_loop_hook(map->mlx_ptr, draw_line, map);
-	mlx_hook(map->mlx_ptr, 3, 0, press_esc, map);
+	mlx_hook(map->mlx_ptr, 2, 0, press_button, map);
 	mlx_hook(map->mlx_ptr, 17, 0, press_red_cross, map);
 	mlx_loop(mlx_ptr);
 }

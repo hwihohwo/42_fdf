@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/25 11:30:03 by marvin           ###   ########.fr        #
+#    Updated: 2023/02/25 21:14:06 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRCS                    = ./srcs/main.c \
 						  ./srcs/bresenhum.c \
 						  ./srcs/isometric_projection.c \
 						  ./srcs/rotate.c \
-						  ./srcs/key_hook.c
+						  ./srcs/key_hook_1.c \
+						  ./srcs/key_hook_2.c \
+						  ./srcs/key_hook_3.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
 MLX						= -L ./ -lmlx -framework OpenGL -framework AppKit

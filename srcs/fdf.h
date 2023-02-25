@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/25 11:44:35 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/25 21:15:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,22 @@ void	z_rotate(double *x, double *y, double *z, double angle);
 void	x_rotate(double *x, double *y, double *z, double angle);
 void	y_rotate(double *x, double *y, double *z, double angle);
 
+int		press_button(int keycode, t_mapinfo *map);
 int		press_esc(int keycode, t_mapinfo *map);
 int		press_red_cross(int keycode, int x, int y, t_mapinfo *map);
+void	press_right(t_mapinfo *map);
+void	press_left(t_mapinfo *map);
+
+void	press_up(t_mapinfo *map);
+void	press_down(t_mapinfo *map);
+void	press_o(t_mapinfo *map);
+void	press_p(t_mapinfo *map);
+void	zoom_in_out(int keycode, t_mapinfo *map);
+
+void	press_rotate(int keycode, t_mapinfo *map);
+void	press_w(t_mapinfo *map);
+void	press_s(t_mapinfo *map);
+void	press_a(t_mapinfo *map);
+void	press_d(t_mapinfo *map);
 
 #endif
