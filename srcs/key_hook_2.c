@@ -66,12 +66,23 @@ void	press_p(t_mapinfo *map)
 
 void	zoom_in_out(int keycode, t_mapinfo *map)
 {
+	int	i;
+
+	i = 0;
+	divide_gap(map);
 	if (keycode == KEY_M)
-		map->gap += 0.5;
+		map->gap += 0.3;
 	else if (keycode == KEY_N)
 	{
-		map->gap -= 0.5;
+		map->gap -= 0.3;
 		if (map->gap < 1.0)
-			map->gap += 0.5;
+			map->gap += 0.3;
+	}
+	while (i < map->height * map->width)
+	{
+		map->p_ary[i].s_x *= map->gap;
+		map->p_ary[i].s_y *= map->gap;
+		map->p_ary[i].s_z *= map->gap;
+		i++;
 	}
 }

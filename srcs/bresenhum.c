@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenhum.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 05:41:13 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/24 16:40:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/26 15:53:26 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	mov_direction(t_mov *mov, t_spos *cur, t_spos *cur_n)
 	else
 		mov->x_mov = -1;
 	if (cur_n->s_y - cur->s_y >= 0)
-		mov->mov_y = 1;
+		mov->y_mov = 1;
 	else
-		mov->mov_y = -1;
+		mov->y_mov = -1;
 }
 
 int	abs_fdf(int x)
@@ -55,26 +55,27 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
 	int		h;
 	t_mov	mov;
 	int		f;
-	t_spos	*start;
+	t_spos	now;
 
-	start = cur;
+	now.s_x = cur->s_x;
+	now.s_y = cur->s_y;
 	if (!inclination_check(cur, cur_n))
 		return (bresenhum_reverse(cur, cur_n, img));
 	w = abs_fdf((int)cur_n->s_x - (int)cur->s_x);
 	h = abs_fdf((int)cur_n->s_y - (int)cur->s_y);
 	mov_direction(&mov, cur, cur_n);
 	f = 2 * h - w;
-	while ((int)cur->s_x != (int)cur_n->s_x)
+	while ((int)now.s_x != (int)cur_n->s_x)
 	{
-		my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, clr(cur, cur_n, start));
+		my_image_put_pixel(now.s_x, now.s_y, img, clr(cur, cur_n, &now));
 		if (f < 0)
 			f += 2 * h;
 		else
 		{
-			cur->s_y += mov_y;
+			now.s_y += mov.y_mov;
 			f += 2 * (h - w);
 		}
-		cur->s_x += mov_x;
+		now.s_x += mov.x_mov;
 	}
 }
 
@@ -84,23 +85,24 @@ void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
 	int		h;
 	t_mov	mov;
 	int		f;
-	t_spos	*start;
+	t_spos	now;
 
-	start = cur;
+	now.s_x = cur->s_x;
+	now.s_y = cur->s_y;
 	w = abs_fdf((int)cur_n->s_x - (int)cur->s_x);
 	h = abs_fdf((int)cur_n->s_y - (int)cur->s_y);
 	mov_direction(&mov, cur, cur_n);
 	f = 2 * w - h;
-	while ((int)cur->s_y != (int)cur_n->s_y)
+	while ((int)now.s_y != (int)cur_n->s_y)
 	{
-		my_image_put_pixel((int)cur->s_x, (int)cur->s_y, img, clr(cur, cur_n, start));
+		my_image_put_pixel(now.s_x, now.s_y, img, clr(cur, cur_n, &now));
 		if (f < 0)
 			f += 2 * w;
 		else
 		{
-			cur->s_x += mov_x;
+			now.s_x += mov.x_mov;
 			f += 2 * (w - h);
 		}
-		cur->s_y += mov_y;
+		now.s_y += mov.y_mov;
 	}
 }

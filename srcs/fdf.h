@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/25 21:15:40 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/26 16:11:37 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,19 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
-# define PRESS_ESC 3
+# define KEY_ESC 53
+# define KEY_RIGHT 124
+# define KEY_LEFT 123
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_O 31
+# define KEY_P 35
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
+# define KEY_M 46
+# define KEY_N 45
 
 # define PI 3.14
 
@@ -83,6 +95,7 @@ int		color_error_check(char *line);
 void	open_error_exit(void);
 void	map_error_exit(char **line_sep, char *line, char *total);
 void	mapinfo_free_exit(t_mapinfo *map_info);
+void	mapinfo_free(t_mapinfo *map_info);
 
 int		count_width(char *total);
 int		count_height(char *total);
@@ -93,9 +106,9 @@ void	start_mlx(t_mapinfo *map_info);
 void	init_image(t_mapinfo *map);
 
 void	my_image_put_pixel(int x, int y, t_img *img, int color);
-void	draw_line(t_mapinfo *map, void *mlx_ptr, void *win_ptr, t_img *img);
-void	case_inclination_0_1(t_spos *cur, t_spos *cur_n, t_img *img);
-void	case_inclination_2(t_spos *cur, t_spos *cur_n, t_img *img);
+int		draw_line(t_mapinfo *map);
+void	divide_gap(t_mapinfo *map);
+int		clr(t_spos *cur, t_spos *cur_n, t_spos *start);
 
 int		inclination_check(t_spos *cur, t_spos *cur_n);
 void	mov_direction(t_mov *mov, t_spos *cur, t_spos *cur_n);
@@ -113,9 +126,9 @@ void	z_rotate(double *x, double *y, double *z, double angle);
 void	x_rotate(double *x, double *y, double *z, double angle);
 void	y_rotate(double *x, double *y, double *z, double angle);
 
-int		press_button(int keycode, t_mapinfo *map);
-int		press_esc(int keycode, t_mapinfo *map);
-int		press_red_cross(int keycode, int x, int y, t_mapinfo *map);
+int		press_button(int keycode, void *map);
+int		press_esc(t_mapinfo *map);
+int		press_red_cross(int keycode, int x, int y, void *map);
 void	press_right(t_mapinfo *map);
 void	press_left(t_mapinfo *map);
 
@@ -125,7 +138,7 @@ void	press_o(t_mapinfo *map);
 void	press_p(t_mapinfo *map);
 void	zoom_in_out(int keycode, t_mapinfo *map);
 
-void	press_rotate(int keycode, t_mapinfo *map);
+void	press_translate(int keycode, t_mapinfo *map);
 void	press_w(t_mapinfo *map);
 void	press_s(t_mapinfo *map);
 void	press_a(t_mapinfo *map);

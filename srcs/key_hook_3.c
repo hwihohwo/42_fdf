@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	press_rotate(int keycode, t_mapinfo *map)
+void	press_translate(int keycode, t_mapinfo *map)
 {
 	if (keycode == KEY_W)
 		press_w(map);
@@ -31,7 +31,7 @@ void	press_w(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		map->p_ary[i].s_y -= 1.0;
+		map->p_ary[i].s_y -= 10.0;
 		i++;
 	}
 }
@@ -43,7 +43,7 @@ void	press_s(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		map->p_ary[i].s_y += 1.0;
+		map->p_ary[i].s_y += 10.0;
 		i++;
 	}
 }
@@ -55,7 +55,7 @@ void	press_a(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		map->p_ary[i].s_x -= 1.0;
+		map->p_ary[i].s_x -= 10.0;
 		i++;
 	}
 }
@@ -67,7 +67,7 @@ void	press_d(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		map->p_ary[i].s_x += 1.0;
+		map->p_ary[i].s_x += 10.0;
 		i++;
 	}
 }

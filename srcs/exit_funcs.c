@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 00:05:04 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/25 09:18:23 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/26 15:21:43 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,16 @@ void	mapinfo_free(t_mapinfo *map_info)
 	int	i;
 
 	i = 0;
-	free(map_info->total);
 	if (map_info->alt_array != 0)
 	{
-		while (map_info->alt_array[i])
+		while (i < map_info->height)
 			free(map_info->alt_array[i++]);
 		free(map_info->alt_array);
 	}
 	i = 0;
 	if (map_info->clr_ary != 0)
 	{
-		while (map_info->clr_ary[i])
+		while (i < map_info->height)
 			free(map_info->clr_ary[i++]);
 		free(map_info->clr_ary);
 	}
