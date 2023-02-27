@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 15:53:25 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:15:05 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_mapinfo
 typedef struct s_mov
 {
 	int	x_mov;
-	int	y_mov;
+	int	z_mov;
 }	t_mov;
 
 typedef struct s_clr
@@ -123,7 +123,7 @@ void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img);
 int		abs_fdf(int x);
 
 void	calc_gap(t_mapinfo *map);
-void	mov_pos(t_mapinfo *map, double x_min, double y_min);
+void	mov_pos(t_mapinfo *map, double x_min, double z_min);
 void	adjust_pos(t_mapinfo *map);
 void	projection(t_spos *pos, int i, int j, t_mapinfo *map);
 void	init_projection(t_mapinfo *map);

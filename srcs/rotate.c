@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 12:49:44 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 18:01:39 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:56:04 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	x_rotate(double *x, double *y, double *z, double angle)
 	temp_x = *x;
 	temp_y = *y;
 	temp_z = *z;
-	*y = temp_z * sin(PI / 180 * angle) + temp_y * cos(PI / 180 * angle);
-	*z = temp_z * cos(PI / 180 * angle) - temp_y * sin(PI / 180 * angle);
+	*y = (-1) * temp_z * sin(PI / 180 * angle) + temp_y * cos(PI / 180 * angle);
+	*z = temp_z * cos(PI / 180 * angle) + temp_y * sin(PI / 180 * angle);
 }

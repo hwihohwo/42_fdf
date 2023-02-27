@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:07:36 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 19:13:21 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:24:18 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	clr(t_spos *cur, t_spos *cur_n, t_spos *now)
 	init_clr(&clr_orig, cur);
 	init_clr(&clr_next, cur_n);
 	dist_e = sqrt((cur_n->s_x - cur->s_x) * (cur_n->s_x - cur->s_x) + \
-	(cur_n->s_y - cur->s_y) * (cur_n->s_y - cur->s_y));
+	(cur_n->s_z - cur->s_z) * (cur_n->s_z - cur->s_z));
 	dist = sqrt((now->s_x - cur->s_x) * (now->s_x - cur->s_x) + \
-	(now->s_y - cur->s_y) * (now->s_y - cur->s_y));
+	(now->s_z - cur->s_z) * (now->s_z - cur->s_z));
 	return (\
 	(calc_color((clr_orig.r), clr_next.r - clr_orig.r, dist / dist_e) << 16) | \
 	(calc_color((clr_orig.g), clr_next.g - clr_orig.g, dist / dist_e) << 8) | \

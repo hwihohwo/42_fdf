@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 00:28:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 19:13:49 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/27 21:20:17 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ void	calc_gap(t_mapinfo *map)
 {
 	int		i;
 	double	x_max;
-	double	y_max;
+	double	z_max;
 
 	i = 0;
 	x_max = map->p_ary[i].s_x;
-	y_max = map->p_ary[i].s_y;
+	z_max = map->p_ary[i].s_z;
 	while (i < map->width * map->height)
 	{
 		if (x_max < map->p_ary[i].s_x)
 			x_max = map->p_ary[i].s_x;
-		if (y_max < map->p_ary[i].s_y)
-			y_max = map->p_ary[i].s_y;
+		if (z_max < map->p_ary[i].s_z)
+			z_max = map->p_ary[i].s_z;
 		i++;
 	}
 	while (x_max * map->gap < WIN_WIDTH - 100 && \
-	y_max * map->gap < WIN_HEIGHT - 100)
+	z_max * map->gap < WIN_HEIGHT - 100)
 		map->gap += 0.1;
 }
 
-void	mov_pos(t_mapinfo *map, double x_min, double y_min)
+void	mov_pos(t_mapinfo *map, double x_min, double z_min)
 {
 	int	i;
 
@@ -43,8 +43,8 @@ void	mov_pos(t_mapinfo *map, double x_min, double y_min)
 	{
 		if (x_min <= 0)
 			map->p_ary[i].s_x += (-1) * x_min + 1;
-		if (y_min <= 0)
-			map->p_ary[i].s_y += (-1) * y_min + 1;
+		if (z_min <= 0)
+			map->p_ary[i].s_z += (-1) * z_min + 1;
 		i++;
 	}
 	calc_gap(map);
@@ -52,7 +52,7 @@ void	mov_pos(t_mapinfo *map, double x_min, double y_min)
 	while (i < map->width * map->height)
 	{
 		map->p_ary[i].s_x *= map->gap;
-		map->p_ary[i].s_y *= map->gap;
+		map->p_ary[i].s_z *= map->gap;
 		i++;
 	}
 }
@@ -61,20 +61,20 @@ void	adjust_pos(t_mapinfo *map)
 {
 	int		i;
 	double	x_min;
-	double	y_min;
+	double	z_min;
 
 	i = 0;
 	x_min = map->p_ary[i].s_x;
-	y_min = map->p_ary[i].s_y;
+	z_min = map->p_ary[i].s_z;
 	while (i < map->width * map->height)
 	{
 		if (map->p_ary[i].s_x < x_min)
 			x_min = map->p_ary[i].s_x;
-		if (map->p_ary[i].s_y < y_min)
-			y_min = map->p_ary[i].s_y;
+		if (map->p_ary[i].s_z < z_min)
+			z_min = map->p_ary[i].s_z;
 		i++;
 	}
-	mov_pos(map, x_min, y_min);
+	mov_pos(map, x_min, z_min);
 }
 
 void	projection(t_spos *pos, int i, int j, t_mapinfo *map)
@@ -86,7 +86,7 @@ void	projection(t_spos *pos, int i, int j, t_mapinfo *map)
 	x = (double)j;
 	y = (double)i;
 	z = (double)map->alt_array[i][j] * (-1);
-	y_rotate(&x, &y, &z, -45);
+	z_rotate(&x, &y, &z, -45);
 	x_rotate(&x, &y, &z, 35.2);
 	pos->s_x = x;
 	pos->s_y = y;

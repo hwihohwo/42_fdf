@@ -31,7 +31,7 @@ void	press_w(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		map->p_ary[i].s_y -= 10.0;
+		map->p_ary[i].s_z -= 10.0;
 		i++;
 	}
 }
@@ -43,7 +43,7 @@ void	press_s(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		map->p_ary[i].s_y += 10.0;
+		map->p_ary[i].s_z += 10.0;
 		i++;
 	}
 }

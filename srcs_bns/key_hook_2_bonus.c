@@ -45,7 +45,7 @@ void	press_o(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		z_rotate(&(map->p_ary[i].s_x), &(map->p_ary[i].s_y), \
+		y_rotate(&(map->p_ary[i].s_x), &(map->p_ary[i].s_y), \
 		&(map->p_ary[i].s_z), -5);
 		i++;
 	}
@@ -58,7 +58,7 @@ void	press_p(t_mapinfo *map)
 	i = 0;
 	while (i < map->width * map->height)
 	{
-		z_rotate(&(map->p_ary[i].s_x), &(map->p_ary[i].s_y), \
+		y_rotate(&(map->p_ary[i].s_x), &(map->p_ary[i].s_y), \
 		&(map->p_ary[i].s_z), 5);
 		i++;
 	}
