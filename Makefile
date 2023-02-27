@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/27 19:07:07 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/02/27 19:36:18 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,28 +43,29 @@ BNS_SRCS				= ./srcs_bns/main_bonus.c \
 						  ./srcs_bns/key_hook_3_bonus.c \
 						  ./srcs_bns/color_bonus.c
 OBJS                    = $(SRCS:%.c=%.o)
+BNS_OBJS				= $(BNS_SRCS:%.c=%.o)
+COMP_OBJS				= $(OBJS)
 FLAGS                   = -Wall -Wextra -Werror
 MLX						= -L ./ -lmlx -framework OpenGL -framework AppKit
 LIBFT					= -L ./libft/ -lft
 
 ifdef FLAG_BONUS
-    OBJS = $(BNS_SRCS:%.c=%.o)
-else
-    OBJS = $(SRCS:%.c=%.o)
+	COMP_OBJS = $(BNS_OBJS)
 endif
 
 all :   $(NAME)
 
-$(NAME)     :   $(OBJS)
+$(NAME)     :   $(COMP_OBJS)
 	$(MAKE) -C libft/
 	$(MAKE) -C mlx/
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -lm $(MLX) $(LIBFT) -I ./srcs/
+	$(CC) $(FLAGS) -o $(NAME) $(COMP_OBJS) -lm $(MLX) $(LIBFT) -I ./srcs/
 
 bonus   :  
-	make FLAG_BONUS=1 all
+	make fclean FLAG_BONUS=1 all
 
 clean   :
 	rm -f $(OBJS)
+	rm -f $(BNS_OBJS)
 	$(MAKE) -C libft/ clean
 	$(MAKE) -C mlx/ clean
 
