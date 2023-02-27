@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenhum.c                                        :+:      :+:    :+:   */
+/*   bresenhum_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 05:41:13 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 15:51:11 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:13:19 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	check_input_w_h(t_spos *cur, t_spos *cur_n, int *w, int *h)
 {

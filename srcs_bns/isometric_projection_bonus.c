@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isometric_projection.c                             :+:      :+:    :+:   */
+/*   isometric_projection_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 00:28:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 19:00:07 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:13:49 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	calc_gap(t_mapinfo *map)
 {
