@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 00:28:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 21:17:04 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:00:21 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,23 @@ void	calc_gap(t_mapinfo *map)
 
 	i = 0;
 	x_max = map->p_ary[i].s_x;
-	z_max = map->p_ary[i].s_z;
-	while (i < map->width * map->height)
+	z_max = map->p_ary[i--].s_z;
+	while (++i < map->width * map->height)
 	{
 		if (x_max < map->p_ary[i].s_x)
 			x_max = map->p_ary[i].s_x;
 		if (z_max < map->p_ary[i].s_z)
 			z_max = map->p_ary[i].s_z;
-		i++;
 	}
-	while (x_max * map->gap < WIN_WIDTH - 100 && \
-	z_max * map->gap < WIN_HEIGHT - 100)
-		map->gap += 0.1;
+	map->gap = 20.0;
+	map->map_width = map->gap * x_max;
+	map->map_height = map->gap * z_max;
+	while (map->map_width > WIN_MAX_WIDTH || map->map_height > WIN_MAX_HEIGHT)
+	{
+		map->gap -= 0.1;
+		map->map_width = map->gap * x_max;
+		map->map_height = map->gap * z_max;
+	}
 }
 
 void	mov_pos(t_mapinfo *map, double x_min, double z_min)
@@ -53,6 +58,7 @@ void	mov_pos(t_mapinfo *map, double x_min, double z_min)
 	{
 		map->p_ary[i].s_x *= map->gap;
 		map->p_ary[i].s_z *= map->gap;
+		map->p_ary[i].s_y *= map->gap;
 		i++;
 	}
 }

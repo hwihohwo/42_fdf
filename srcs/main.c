@@ -24,6 +24,8 @@ void	init_map_info(t_mapinfo *map_info)
 	map_info->mlx_ptr = 0;
 	map_info->mlx_win = 0;
 	map_info->img.img = 0;
+	map_info->map_width = 0;
+	map_info->map_height = 0;
 }
 
 int	main(int argc, char *argv[])

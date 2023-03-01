@@ -51,7 +51,7 @@ int	abs_fdf(int x)
 		return (-1 * x);
 }
 
-void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
+void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
 {
 	int		w;
 	int		h;
@@ -62,12 +62,12 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
 	now.s_x = cur->s_x;
 	now.s_z = cur->s_z;
 	if (!check_input_w_h(cur, cur_n, &w, &h))
-		return (bresenhum_reverse(cur, cur_n, img));
+		return (bresenhum_rev(cur, cur_n, img, map));
 	mov_direction(&mov, cur, cur_n);
 	f = 2 * h - w;
 	while ((int)now.s_x != (int)cur_n->s_x)
 	{
-		my_image_put_pixel(now.s_x, now.s_z, img, clr(cur, cur_n, &now));
+		my_image_put_pixel(&now, img, clr(cur, cur_n, &now), map);
 		if (f < 0)
 			f += 2 * h;
 		else
@@ -79,7 +79,7 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img)
 	}
 }
 
-void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
+void	bresenhum_rev(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
 {
 	int		w;
 	int		h;
@@ -95,7 +95,7 @@ void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img)
 	f = 2 * w - h;
 	while ((int)now.s_z != (int)cur_n->s_z)
 	{
-		my_image_put_pixel(now.s_x, now.s_z, img, clr(cur, cur_n, &now));
+		my_image_put_pixel(&now, img, clr(cur, cur_n, &now), map);
 		if (f < 0)
 			f += 2 * w;
 		else

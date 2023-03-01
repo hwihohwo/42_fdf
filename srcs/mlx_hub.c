@@ -16,7 +16,7 @@ void	init_image(t_mapinfo *map)
 {
 	if (map->img.img != 0)
 		mlx_destroy_image(map->mlx_ptr, map->img.img);
-	map->img.img = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	map->img.img = mlx_new_image(map->mlx_ptr, map->map_width, map->map_height);
 	map->img.addr = mlx_get_data_addr(map->img.img, &(map->img.bits_per_pixel), \
 	&(map->img.line_length), &(map->img.endian));
 }
@@ -24,10 +24,11 @@ void	init_image(t_mapinfo *map)
 void	start_mlx(t_mapinfo *map)
 {
 	map->mlx_ptr = mlx_init();
-	map->mlx_win = mlx_new_window(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	init_projection(map);
+	map->mlx_win = mlx_new_window(map->mlx_ptr, \
+	map->map_width, map->map_height, "fdf");
+	mlx_loop_hook(map->mlx_ptr, &draw_line, map);
 	mlx_hook(map->mlx_win, 2, 0, &press_button, map);
 	mlx_hook(map->mlx_win, 17, 0, &press_red_cross, map);
-	mlx_loop_hook(map->mlx_ptr, &draw_line, map);
 	mlx_loop(map->mlx_ptr);
 }

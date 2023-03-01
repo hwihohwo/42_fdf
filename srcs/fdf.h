@@ -21,8 +21,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_MAX_WIDTH 1980
+# define WIN_MAX_HEIGHT 1080
 
 # define KEY_ESC 53
 # define KEY_RIGHT 124
@@ -71,6 +71,8 @@ typedef struct s_mapinfo
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_img		img;
+	int			map_width;
+	int			map_height;
 }	t_mapinfo;
 
 typedef struct s_mov
@@ -112,14 +114,14 @@ void	control_map_info(t_mapinfo *map_info);
 void	start_mlx(t_mapinfo *map_info);
 void	init_image(t_mapinfo *map);
 
-void	my_image_put_pixel(int x, int y, t_img *img, int color);
+void	my_image_put_pixel(t_spos *now, t_img *img, int color, t_mapinfo *map);
 int		draw_line(t_mapinfo *map);
 void	divide_gap(t_mapinfo *map);
 
 int		check_input_w_h(t_spos *cur, t_spos *cur_n, int *w, int *h);
 void	mov_direction(t_mov *mov, t_spos *cur, t_spos *cur_n);
-void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img);
-void	bresenhum_reverse(t_spos *cur, t_spos *cur_n, t_img *img);
+void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map);
+void	bresenhum_rev(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map);
 int		abs_fdf(int x);
 
 void	calc_gap(t_mapinfo *map);

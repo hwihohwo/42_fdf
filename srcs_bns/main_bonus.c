@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:08:34 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 21:20:28 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:05:36 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_map_info(t_mapinfo *map_info)
 	map_info->mlx_ptr = 0;
 	map_info->mlx_win = 0;
 	map_info->img.img = 0;
+	map_info->map_width = 0;
+	map_info->map_height = 0;
 }
 
 int	main(int argc, char *argv[])
