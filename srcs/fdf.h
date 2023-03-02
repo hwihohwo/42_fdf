@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:09:07 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 21:15:05 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:43:06 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ void	divide_gap(t_mapinfo *map);
 
 int		check_input_w_h(t_spos *cur, t_spos *cur_n, int *w, int *h);
 void	mov_direction(t_mov *mov, t_spos *cur, t_spos *cur_n);
-void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map);
-void	bresenhum_rev(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map);
+void	bresenham(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map);
+void	bresenham_rev(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map);
 int		abs_fdf(int x);
 
 void	calc_gap(t_mapinfo *map);

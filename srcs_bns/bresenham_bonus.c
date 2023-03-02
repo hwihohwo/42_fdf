@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenhum.c                                        :+:      :+:    :+:   */
+/*   bresenham_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 05:41:13 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 21:13:36 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:43:27 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	check_input_w_h(t_spos *cur, t_spos *cur_n, int *w, int *h)
 {
@@ -51,7 +51,7 @@ int	abs_fdf(int x)
 		return (-1 * x);
 }
 
-void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
+void	bresenham(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
 {
 	int		w;
 	int		h;
@@ -62,7 +62,7 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
 	now.s_x = cur->s_x;
 	now.s_z = cur->s_z;
 	if (!check_input_w_h(cur, cur_n, &w, &h))
-		return (bresenhum_rev(cur, cur_n, img, map));
+		return (bresenham_rev(cur, cur_n, img, map));
 	mov_direction(&mov, cur, cur_n);
 	f = 2 * h - w;
 	while ((int)now.s_x != (int)cur_n->s_x)
@@ -79,7 +79,7 @@ void	bresenhum(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
 	}
 }
 
-void	bresenhum_rev(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
+void	bresenham_rev(t_spos *cur, t_spos *cur_n, t_img *img, t_mapinfo *map)
 {
 	int		w;
 	int		h;
