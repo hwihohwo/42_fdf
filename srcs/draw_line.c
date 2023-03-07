@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:23:21 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/02/27 17:16:47 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:59:00 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	draw_line(t_mapinfo *map)
 	while (i < map->height * map->width)
 	{
 		if (map->p_ary[i].next_r != 0)
-			bresenhum(&map->p_ary[i], map->p_ary[i].next_r, &(map->img), map);
+			bresenham(&map->p_ary[i], map->p_ary[i].next_r, &(map->img), map);
 		if (map->p_ary[i].next_d != 0)
-			bresenhum(&map->p_ary[i], map->p_ary[i].next_d, &(map->img), map);
+			bresenham(&map->p_ary[i], map->p_ary[i].next_d, &(map->img), map);
 		i++;
 	}
 	mlx_put_image_to_window(map->mlx_ptr, map->mlx_win, map->img.img, 0, 0);

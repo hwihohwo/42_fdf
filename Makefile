@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:02:16 by seonghwc          #+#    #+#              #
-#    Updated: 2023/02/27 19:36:18 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/03/07 18:59:25 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS                    = ./srcs/main.c \
 						  ./srcs/exit_funcs.c \
 						  ./srcs/mlx_hub.c \
 						  ./srcs/draw_line.c \
-						  ./srcs/bresenhum.c \
+						  ./srcs/bresenham.c \
 						  ./srcs/isometric_projection.c \
 						  ./srcs/rotate.c \
 						  ./srcs/key_hook_1.c \
@@ -35,7 +35,7 @@ BNS_SRCS				= ./srcs_bns/main_bonus.c \
 						  ./srcs_bns/exit_funcs_bonus.c \
 						  ./srcs_bns/mlx_hub_bonus.c \
 						  ./srcs_bns/draw_line_bonus.c \
-						  ./srcs_bns/bresenhum_bonus.c \
+						  ./srcs_bns/bresenham_bonus.c \
 						  ./srcs_bns/isometric_projection_bonus.c \
 						  ./srcs_bns/rotate_bonus.c \
 						  ./srcs_bns/key_hook_1_bonus.c \
